@@ -1,0 +1,25 @@
+<%= form_for(@buy_and_keep) do |f| %>
+  <% if @buy_and_keep.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@buy_and_keep.errors.count, "error") %> prohibited this buy_and_keep from being saved:</h2>
+
+      <ul>
+      <% @buy_and_keep.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :cost %><br>
+    <%= f.text_field :cost %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

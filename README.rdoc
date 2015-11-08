@@ -1,0 +1,3 @@
+== README
+
+When the application starts it collects the bill data.

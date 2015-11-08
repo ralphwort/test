@@ -1,0 +1,110 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Back', statements_path %>
+
+<p>
+  <strong>Bill Date:</strong>
+  <%= @statement.generated.to_date %>
+  <strong>Due:</strong>
+  <%= @statement.due.to_date %>
+
+  <strong>From:</strong>
+  <%= @statement.from.to_date %>
+  <strong>To:</strong>
+  <%= @statement.to.to_date %>
+</p>
+
+<h3>Bill Total: <%= number_to_currency(@statement.subscriptions.sum(:cost) + @statement.calls.sum(:cost) +
+                                               @statement.rentals.sum(:cost) + @statement.buy_and_keeps.sum(:cost), unit: "£") %></h3>
+<h1>Subscritions</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Type</th>
+    <th>Name</th>
+    <th>Cost</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @statement.subscriptions.each do |subscription| %>
+      <tr>
+        <td><%= subscription.sub_type %></td>
+        <td><%= subscription.name %></td>
+        <td><%= number_to_currency(subscription.cost, unit: "£") %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<h3>Total: <%= number_to_currency(@statement.subscriptions.sum(:cost) + @statement.calls.sum(:cost), unit: "£" ) %></h3>
+
+<h1>Calls</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Called</th>
+    <th>Duration</th>
+    <th>Cost</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @statement.calls.each do |call| %>
+      <tr>
+        <td><%= call.called %></td>
+        <td><%= call.duration %></td>
+        <td><%= number_to_currency(call.cost, unit: "£") %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<h3>Total: <%= number_to_currency(@statement.calls.sum(:cost), unit: "£") %></h3>
+
+<h1>Rentals</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Cost</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @statement.rentals.each do |rental| %>
+      <tr>
+        <td><%= rental.title %></td>
+        <td><%= number_to_currency(rental.cost, unit: "£") %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<h3>Total: <%= number_to_currency(@statement.rentals.sum(:cost), unit: "£") %></h3>
+
+<h1>Buy And Keeps</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Cost</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @statement.buy_and_keeps.each do |buy_and_keep| %>
+      <tr>
+        <td><%= buy_and_keep.title %></td>
+        <td><%= number_to_currency(buy_and_keep.cost, unit: "£") %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<h3>Total: <%= number_to_currency(@statement.buy_and_keeps.sum(:cost), unit: "£") %></h3>
+

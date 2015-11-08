@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @buy_and_keep.title %>
+</p>
+
+<p>
+  <strong>Cost:</strong>
+  <%= @buy_and_keep.cost %>
+</p>
+
+<%= link_to 'Edit', edit_buy_and_keep_path(@buy_and_keep) %> |
+<%= link_to 'Back', buy_and_keeps_path %>

@@ -1,0 +1,134 @@
+{
+  "$schema"    : "http://json-schema.org/draft-03/schema#",
+
+
+  "properties" : {
+    "statement": {
+      "properties" : {
+        "generated": {
+          "type": "date",
+          "required": true
+        },
+        "due": {
+          "type": "date",
+          "required": true
+        },
+        "period": {
+          "properties": {
+            "from": {
+              "type": "date",
+              "required": true
+            },
+            "to": {
+              "type": "date",
+              "required": true
+            }
+          }
+        }
+      },
+      "additionalProperties" : false
+    },
+    "total": {
+      "type": "float"
+    },
+    "package": {
+      "subscriptions": {
+        "type"       : "array",
+        "items" : [
+          {
+            "type" : "object",
+            "properties" : {
+              "type" : {
+                "type" : "string",
+                "required" : true
+              },
+              "name" : {
+                "type" : "string",
+                "required" : true
+              },
+              "cost" : {
+                "type" : "float",
+                "required" : true
+              }
+            }
+          }
+        ]
+      },
+      "total":{
+        "type": "float"
+      }
+    },
+    "callCharges": {
+      "properties": {
+        "calls": {
+          "type": "array",
+          "items": [
+            {
+              "properties": {
+                "called": {
+                  "type": "string",
+                  "required": true
+                },
+                "duration": {
+                  "type": "string",
+                  "required": true
+                },
+                "cost": {
+                  "type": "float",
+                  "required": true
+                }
+              }
+            }
+          ]
+        },
+        "total": {
+          "type": "float"
+        }
+      },
+      "additionalProperties" : false
+    },
+    "skyStore": {
+      "properties": {
+        "rentals": {
+          "type": "array",
+          "items": [
+            {
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "required": true
+                },
+                "cost": {
+                  "type": "float",
+                  "required": true
+                }
+              }
+            }
+          ]
+        },
+        "buyAndKeep": {
+          "type": "array",
+          "items": [
+            {
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "required": true
+                },
+                "cost": {
+                  "type": "float",
+                  "required": true
+                }
+              }
+            }
+          ]
+        },
+        "total": {
+          "type": "float"
+        }
+      },
+      "additionalProperties" : false
+    }
+  },
+  "additionalProperties" : false
+}
